@@ -1,22 +1,26 @@
-import {useState} from "react";
 import styles from "styles/styles.module.css";
 import noImage from "assets/no-image.jpg";
+import { useProduct } from "hooks";
 
-export const ProductCard = () => {
-    const [counter, setCounter] = useState(0);
+interface Props {
+    product: Product;
+}
+interface Product {
+    id: string;
+    title: string;
+    img?: string;
+}
 
-    const increaseBy = (value: number) => {
-        setCounter((prev) => Math.max(prev + value, 0));
-    };
+export const ProductCard = ({ product }: Props) => {
+    const { counter, increaseBy } = useProduct();
     return (
         <div className={styles.productCard}>
             <img
                 className={styles.productImg}
-                src='/coffee-mug.png'
+                src={product.img ? product.img : noImage}
                 alt='coffe mod'
             />
-            {/* <img className={styles.productImg} src={noImage} alt="no-images"/> */}
-            <span className={styles.productDescription}>Coffy mod</span>
+            <span className={styles.productDescription}>{product.title}</span>
             <div className={styles.buttonsContainer}>
                 <button
                     className={styles.buttonMinus}
