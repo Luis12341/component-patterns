@@ -2,7 +2,7 @@
 import {useState} from "react";
 
 interface ProductHook{
-    increaseBy: Function,
+    increaseBy: (value: number)=>void,
     counter: Number
 }
 
